@@ -1,2 +1,2 @@
-# kiwi-simple-flight-search-app
-Task for Javascript and HTML developer
+# BMO flights detector
+BMO has many built in features and one of them lets you find perfect travel connections.
