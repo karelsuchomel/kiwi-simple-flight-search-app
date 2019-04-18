@@ -1,14 +1,14 @@
 import React from 'react'
 
-const Connection = (props) => {
-	const dateDeparture = new Date(props.departure)
+import {dateFromUnixTimestamp as dFUT, timeFromUnixTimestamp as tFUT } from '../utils/UnixTimestampFormating'
 
+const Connection = (props) => {
 	return (
 		<li>
 			<div className="connection-basic">
-					Price: {props.price}
-					Departure: {dateDeparture.getDate()}
-					Arrival: {props.arrival}
+					<div className="price">{props.price}&euro;</div>
+					<div className="departure-time">{tFUT(props.departure)} - {tFUT(props.arrival)}</div>
+					<div className="departure-date">{dFUT(props.departure)}</div>
 					From: {props.cityFrom}
 					To: {props.cityTo}
 					Flight duration: {props.flyDuration}

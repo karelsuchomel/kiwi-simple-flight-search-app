@@ -4,12 +4,17 @@ import React from 'react'
 import Header from './Header.js'
 import Query from './Query.js'
 import VisibleConnections from './VisibleConnections.js'
+// BMO graphics
+import BMOGraphicsURL from '../images/bmo-body-optimized.svg'
 
 const TodoApp = () => (
-	<div id="app-wrapper">
-		<Header />
-		<Query />
-		<VisibleConnections />
+	<div id="bmo-body">
+		<img src={BMOGraphicsURL}/>
+		<div id="app-wrapper">
+			<Header />
+			<Query />
+			<VisibleConnections />
+		</div>
 	</div>
 )
 

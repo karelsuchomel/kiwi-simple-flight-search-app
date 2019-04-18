@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P')
+
+@font-face
+  font-family: "Disposable Droid BB"
+  src: url("DisposableDroidBB.otf")
+  font-weight: normal
+
+@font-face
+  font-family: "Disposable Droid BB Bold"
+  src: url("DisposableDroidBB_bld.otf")
+  font-weight: normal
+
+//
+// unselectable element
+//
+unselectable
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+html
+	-ms-touch-action: manipulation
+	touch-action: manipulation
+
+html, input, button
+	font-family: 'Disposable Droid BB', 'Press Start 2P', sans-serif
+
+body
+	background-color: #FFF
+	color: #212623
+
+#bmo-body
+	position: relative
+	max-width: 960px
+	margin: 0 auto
+
+	> img
+		max-width: 100%
+		height: auto
+
+
+#app-wrapper
+	position: absolute
+	top: 7.7425%
+	left: 22.577%
+	max-width: 57.5458333%
+	height: 42.5833%
+	overflow-x: hidden
+	padding: 20px
+	box-sizing: border-box
+
+	background-color: #DEFFE8
+
+	h1
+		font-size: 1.2em
+		margin-top: 0
+
+@import 'date-picker-input'

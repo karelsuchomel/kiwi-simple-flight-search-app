@@ -1,4 +1,4 @@
-import './index.sass'
+import './sass/index.sass'
 import React from 'react'
 import { render } from 'react-dom'
 import configureStore from './configureStore.js'

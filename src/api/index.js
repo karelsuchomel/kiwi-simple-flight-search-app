@@ -1,8 +1,21 @@
-export const fetchConnections = (flyFrom, to, dateFrom, sort) => 
-	fetch('https://api.skypicker.com/flights?flyFrom=PRG&to=LGW&dateFrom=20/5/2019&dateTo=20/5/2019&partner=picky')
+export const fetchConnections = (flyFrom, flyTo, dateFrom, sort) => {
+
+	let APIcall = 'https://api.skypicker.com/flights?'
+	APIcall += 'flyFrom=' + flyFrom
+	APIcall += '&to=' + flyTo
+	APIcall += '&dateFrom=' + dateFrom 
+	APIcall += '&dateTo=' + dateFrom
+	APIcall += '&sort=' + sort
+	APIcall += '&partner=picky'
+
+	console.log(APIcall)
+
+	return( fetch(APIcall)
 		.then( response => {
 			if (response.ok) {
 				return response.json()
 			}
 			throw new Error('Network response was not ok.')
 		})
+	)
+}
