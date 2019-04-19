@@ -1,10 +1,10 @@
-export const fetchConnections = (flyFrom, flyTo, dateFrom, sort) => {
+export const fetchConnections = (flyFrom, flyTo, dateFrom, dateTo, sort) => {
 
 	let APIcall = 'https://api.skypicker.com/flights?'
 	APIcall += 'flyFrom=' + flyFrom
 	APIcall += '&to=' + flyTo
 	APIcall += '&dateFrom=' + dateFrom 
-	APIcall += '&dateTo=' + dateFrom
+	APIcall += '&dateTo=' + dateTo
 	APIcall += '&sort=' + sort
 	APIcall += '&partner=picky'
 

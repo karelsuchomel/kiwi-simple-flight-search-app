@@ -43,7 +43,7 @@ class Query extends React.Component {
       return
     }
 
-		if (!this.state.selectedDateFrom) {
+		if (this.state.selectedDateFrom === undefined) {
 			this.setState({ selectedDateTo: undefined })
 			return
 		}
@@ -61,86 +61,94 @@ class Query extends React.Component {
 	render() {
 		const { fetchConnections } = this.props
 		const todaysDate = new Date()
+		console.log(this.state.sortType)
 
 		let fromInputNode
 		let toInputNode
-		let sortType
 
 		return(
-			<div id="query-wrappe">
+			<div id="query-wrapper">
 
-				<label htmlFor="flyFrom">
-					From
+				<label className="inset-label" htmlFor="flyFrom">
+					From:
+					<input 
+						id="flyFrom" 
+						type="text" 
+						ref={node => {fromInputNode = node}}
+					/>
 				</label>
-				<input 
-					id="flyFrom" 
-					type="text" 
-					ref={node => {fromInputNode = node}}
-				/>
 
-				<label htmlFor="flyTo">
-					To
+				<label className="inset-label" htmlFor="flyTo">
+					To:
+					<input 
+						id="flyTo" 
+						type="text" 
+						ref={node => {toInputNode = node}}
+					/>
 				</label>
-				<input 
-					id="flyTo" 
-					type="text" 
-					ref={node => {toInputNode = node}}
-				/>
 
-				<label htmlFor="dateFrom">
-					First date to leave
+				<label className="inset-label" htmlFor="dateFrom">
+					First date to leave:
+					<DayPickerInput 
+						className="DayPicker"
+						onDayChange={this.handleDateFromChange}
+						placeholder="YYYY-MM-DD"
+						selectedDays={this.state.selectedDateFrom}
+	          disabledDays={new Date(2019,4,19) }
+						inputProps={({id: 'dateFrom'})}
+					/>
 				</label>
-				<DayPickerInput 
-					className="DayPicker"
-					onDayChange={this.handleDateFromChange}
-					placeholder="YYYY-MM-DD"
-					selectedDays={this.state.selectedDateFrom}
-          disabledDays={new Date(2019,4,19) }
-					inputProps={({id: 'dateFrom'})}
-				/>
 
-				<label htmlFor="dateTo">
-					Last date to leave
+				<label className="inset-label" htmlFor="dateTo">
+					Last date to leave:
+					<DayPickerInput 
+						className="DayPicker"
+						onDayChange={this.handleDateToChange}
+						placeholder="YYYY-MM-DD"
+						selectedDays={this.state.selectedDateTo}
+	          disabledDays={{ before: this.state.selectedDateFrom }}
+						inputProps={({id: 'dateTo'})}
+					/>
 				</label>
-				<DayPickerInput 
-					className="DayPicker"
-					onDayChange={this.handleDateToChange}
-					placeholder="YYYY-MM-DD"
-					selectedDays={this.state.selectedDateTo}
-          disabledDays={{ before: this.state.selectedDateFrom }}
-					inputProps={({id: 'dateTo'})}
-				/>
 
 
-				<span>Sort by:</span>
-				<input 
-					type="radio" 
-					id="sort-by-price" 
-					name="sort" 
-					value="price" 
-					onChange={() => this.handleSortChange('price')} 
-					checked={this.state.sortType === 'price' && true}
-				/>
-				<label htmlFor="sort-by-price">Price</label>
-				<input 
-					type="radio" 
-					id="sort-by-quality" 
-					name="sort" 
-					value="quality"  
-					onChange={() => this.handleSortChange('quality')} 
-					checked={this.state.sortType === 'quality' && true}
-				/>
-				<label htmlFor="sort-by-quality">Quality</label>
-				<input 
-					type="radio" 
-					id="sort-by-duration" 
-					name="sort" 
-					value="duration"
-					onChange={() => this.handleSortChange('duration')} 
-					checked={this.state.sortType === 'duration' && true}
-				/>
-				<label htmlFor="sort-by-duration">Duration</label>
-				<button onClick={() => fetchConnections(fromInputNode.value, toInputNode.value, tFUT(this.state.selectedDateFrom), this.state.sortType)}>Search</button>
+				<div className="segment-wrapper">
+				<legend>Priority:</legend>
+				<label htmlFor="sort-by-price">
+					<input 
+						type="radio" 
+						id="sort-by-price" 
+						name="sort" 
+						value="price" 
+						onChange={() => this.handleSortChange('price')} 
+						checked={this.state.sortType === 'price' && true}
+					/>
+					Price
+				</label>
+				<label htmlFor="sort-by-quality">
+					<input 
+						type="radio" 
+						id="sort-by-quality" 
+						name="sort" 
+						value="quality"  
+						onChange={() => this.handleSortChange('quality')} 
+						checked={this.state.sortType === 'quality' && true}
+					/>
+					Quality
+				</label>
+				<label htmlFor="sort-by-duration">
+					<input 
+						type="radio" 
+						id="sort-by-duration" 
+						name="sort" 
+						value="duration"
+						onChange={() => this.handleSortChange('duration')} 
+						checked={this.state.sortType === 'duration' && true}
+					/>
+					Duration
+				</label>
+				</div>
+				<button onClick={() => fetchConnections(fromInputNode.value, toInputNode.value, tFUT(this.state.selectedDateFrom), tFUT(this.state.selectedDateTo), this.state.sortType)}>Search</button>
 			</div>
 		)
 	}

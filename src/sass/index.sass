@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P')
 
 @font-face
-  font-family: "Disposable Droid BB"
-  src: url("DisposableDroidBB.otf")
-  font-weight: normal
+	font-family: "Disposable Droid BB"
+	src: url("DisposableDroidBB.otf")
+	font-weight: 400
 
 @font-face
-  font-family: "Disposable Droid BB Bold"
-  src: url("DisposableDroidBB_bld.otf")
-  font-weight: normal
+	font-family: "Disposable Droid BB"
+	src: url("DisposableDroidBB_bld.otf")
+	font-weight: 600
 
 //
 // unselectable element
@@ -46,8 +46,8 @@ body
 	position: absolute
 	top: 7.7425%
 	left: 22.577%
-	max-width: 57.5458333%
-	height: 42.5833%
+	max-width: 57.458333%
+	height: 42.3833%
 	overflow-x: hidden
 	padding: 20px
 	box-sizing: border-box
@@ -57,5 +57,122 @@ body
 	h1
 		font-size: 1.2em
 		margin-top: 0
+
+#query-wrapper
+	font-size: 20px
+	&:after
+		content: ""
+		display: block
+		clear: both
+
+	.segment-wrapper
+		clear: both
+		&:after
+			content: ""
+			display: block
+			clear: both
+
+	legend
+		display: block
+
+	.inset-label
+		display: block
+		float: left
+		border: 3px solid #749A92
+		border-radius: 3px
+		padding: 6px 12px
+		margin: 10px 10px 10px 0
+		cursor: default
+
+
+		input
+			max-width: 120px
+			border: 0
+			background-color: transparent
+			box-shadow: 0
+			border-radius: 3px
+			padding: 0 0 0 8px
+
+			font-size: inherit
+
+	label
+		display: block
+		float: left
+		padding: 6px 12px 6px 0
+		margin: 0 10px 10px 0
+		cursor: pointer
+
+		input[type='radio']
+			-webkit-appearance: none
+			-moz-appearance: none
+			appearance: none
+
+			border-radius: 50%
+			width: 18px
+			height: 18px
+
+			border: 3px solid #749A92
+			outline: none
+			margin-right: 5px
+
+			position: relative
+			top: 4px
+
+			&:checked
+				background-color: #749A92
+
+	button
+		font-size: inherit
+		color: white
+		background-color: #2D9D83
+		border: 0
+		border-radius: 3px
+		padding: 8px 12px
+		margin: 10px 0
+		cursor: pointer
+
+		&:hover, &:active, &:focus
+			background-color: #184F45
+
+#visible-connections-wrapper
+	ul
+		padding: 0
+		margin: 0
+
+		li
+			display: flex
+			align-items: stretch
+			border-radius: 3px
+			padding: 20px 12px
+			margin: 15px 0
+			background-color: #BEEDCC
+			list-style: none
+
+			.price
+				line-height: 43px
+				padding-right: 30px 
+				font-size: 38px
+				font-weight: 600
+
+			.departure
+				flex-shrink: 0
+				padding-right: 30px
+				.departure-time
+					font-size: 20px
+					font-weight: 600
+
+				.departure-date
+					color: #3B443D
+
+			.flight
+				padding-right: 30px
+				.duration
+					font-size: 20px
+					font-weight: 600
+				.direction
+					color: #3B443D
+
+			a
+				color: #2D9D83
 
 @import 'date-picker-input'

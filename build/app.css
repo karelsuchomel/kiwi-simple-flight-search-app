@@ -2,12 +2,12 @@
 @font-face {
   font-family: "Disposable Droid BB";
   src: url(media/DisposableDroidBB.0ab8017d.otf);
-  font-weight: normal; }
+  font-weight: 400; }
 
 @font-face {
-  font-family: "Disposable Droid BB Bold";
+  font-family: "Disposable Droid BB";
   src: url(media/DisposableDroidBB_bld.141dbd81.otf);
-  font-weight: normal; }
+  font-weight: 600; }
 
 unselectable {
   -webkit-touch-callout: none;
@@ -40,8 +40,8 @@ body {
   position: absolute;
   top: 7.7425%;
   left: 22.577%;
-  max-width: 57.5458333%;
-  height: 42.5833%;
+  max-width: 57.458333%;
+  height: 42.3833%;
   overflow-x: hidden;
   padding: 20px;
   box-sizing: border-box;
@@ -49,6 +49,102 @@ body {
   #app-wrapper h1 {
     font-size: 1.2em;
     margin-top: 0; }
+
+#query-wrapper {
+  font-size: 20px; }
+  #query-wrapper:after {
+    content: "";
+    display: block;
+    clear: both; }
+  #query-wrapper .segment-wrapper {
+    clear: both; }
+    #query-wrapper .segment-wrapper:after {
+      content: "";
+      display: block;
+      clear: both; }
+  #query-wrapper legend {
+    display: block; }
+  #query-wrapper .inset-label {
+    display: block;
+    float: left;
+    border: 3px solid #749A92;
+    border-radius: 3px;
+    padding: 6px 12px;
+    margin: 10px 10px 10px 0;
+    cursor: default; }
+    #query-wrapper .inset-label input {
+      max-width: 120px;
+      border: 0;
+      background-color: transparent;
+      box-shadow: 0;
+      border-radius: 3px;
+      padding: 0 0 0 8px;
+      font-size: inherit; }
+  #query-wrapper label {
+    display: block;
+    float: left;
+    padding: 6px 12px 6px 0;
+    margin: 0 10px 10px 0;
+    cursor: pointer; }
+    #query-wrapper label input[type='radio'] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      border: 3px solid #749A92;
+      outline: none;
+      margin-right: 5px;
+      position: relative;
+      top: 4px; }
+      #query-wrapper label input[type='radio']:checked {
+        background-color: #749A92; }
+  #query-wrapper button {
+    font-size: inherit;
+    color: white;
+    background-color: #2D9D83;
+    border: 0;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    cursor: pointer; }
+    #query-wrapper button:hover, #query-wrapper button:active, #query-wrapper button:focus {
+      background-color: #184F45; }
+
+#visible-connections-wrapper ul {
+  padding: 0;
+  margin: 0; }
+  #visible-connections-wrapper ul li {
+    display: flex;
+    align-items: stretch;
+    border-radius: 3px;
+    padding: 20px 12px;
+    margin: 15px 0;
+    background-color: #BEEDCC;
+    list-style: none; }
+    #visible-connections-wrapper ul li .price {
+      line-height: 43px;
+      padding-right: 30px;
+      font-size: 38px;
+      font-weight: 600; }
+    #visible-connections-wrapper ul li .departure {
+      flex-shrink: 0;
+      padding-right: 30px; }
+      #visible-connections-wrapper ul li .departure .departure-time {
+        font-size: 20px;
+        font-weight: 600; }
+      #visible-connections-wrapper ul li .departure .departure-date {
+        color: #3B443D; }
+    #visible-connections-wrapper ul li .flight {
+      padding-right: 30px; }
+      #visible-connections-wrapper ul li .flight .duration {
+        font-size: 20px;
+        font-weight: 600; }
+      #visible-connections-wrapper ul li .flight .direction {
+        color: #3B443D; }
+    #visible-connections-wrapper ul li a {
+      color: #2D9D83; }
 
 .DayPicker {
   display: inline-block;
