@@ -27,7 +27,6 @@ class Query extends React.Component {
 		}
 	}
 	handlePlaceChange(place, field) {
-		console.log('place: ' + place + ' field: ' + field)
 		const newState = new Object
 		newState[field] = place
 		this.setState(newState)
@@ -67,8 +66,6 @@ class Query extends React.Component {
 	render() {
 		const { fetchConnections } = this.props
 		const todaysDate = new Date()
-
-		console.log("placeFrom: " + this.state.placeFrom + " placeTo: " + this.state.placeTo)
 
 		return(
 			<div id="query-wrapper">

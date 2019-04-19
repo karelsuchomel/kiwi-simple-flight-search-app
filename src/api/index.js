@@ -8,8 +8,6 @@ export const fetchConnections = (flyFrom, flyTo, dateFrom, dateTo, sort) => {
 	APIcall += '&sort=' + sort
 	APIcall += '&partner=picky'
 
-	console.log(APIcall)
-
 	return( fetch(APIcall)
 		.then( response => {
 			if (response.ok) {

@@ -25,8 +25,6 @@ export default class Place extends React.Component {
 		APIcall += 'term=' + term
 		APIcall += '&location_types=city'
 
-		console.log(APIcall)
-
 		return( fetch(APIcall)
 			.then( response => {
 				if (response.ok) {
