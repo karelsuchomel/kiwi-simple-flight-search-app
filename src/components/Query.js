@@ -8,42 +8,48 @@ import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
 // Parse date
 import { parseDate as tFUT} from '../utils/UnixTimestampFormating'
+// Components
+import Place from './Place'
 
 class Query extends React.Component { 
 	constructor(props) {
 		super(props)
+		this.handlePlaceChange = this.handlePlaceChange.bind(this)
 		this.handleDateFromChange = this.handleDateFromChange.bind(this)
 		this.handleDateToChange = this.handleDateToChange.bind(this)
 		this.handleSortChange = this.handleSortChange.bind(this)
 		this.state = {
+			placeFrom: undefined,
+			placeTo: undefined,
 			selectedDateFrom: undefined,
 			selectedDateTo: undefined,
 			sortType: 'price'
 		}
 	}
+	handlePlaceChange(place, field) {
+		console.log('place: ' + place + ' field: ' + field)
+		const newState = new Object
+		newState[field] = place
+		this.setState(newState)
+	}
+
 	handleDateFromChange(day, { selected, disabled }) {
 		if (disabled) {
-      return
-    }
-    if (selected) {
-      // Unselect the day if already selected
-      this.setState({ selectedDateFrom: undefined })
-      return
-    }
+			return
+		}
+		if (selected) {
+			// Unselect the day if already selected
+			this.setState({ selectedDateFrom: undefined })
+			return
+		}
 
 		this.setState({ selectedDateFrom: day })
 	}
 	handleDateToChange(day, { selected, disabled }) {
 		if (disabled) {
-      return
-    }
-    if (selected) {
-      // Unselect the day if already selected
-      this.setState({ selectedDateTo: undefined })
-      return
-    }
-
-		if (this.state.selectedDateFrom === undefined) {
+			return
+		}
+		if (selected || !this.state.selectedDateFrom) {
 			this.setState({ selectedDateTo: undefined })
 			return
 		}
@@ -61,55 +67,52 @@ class Query extends React.Component {
 	render() {
 		const { fetchConnections } = this.props
 		const todaysDate = new Date()
-		console.log(this.state.sortType)
 
-		let fromInputNode
-		let toInputNode
+		console.log("placeFrom: " + this.state.placeFrom + " placeTo: " + this.state.placeTo)
 
 		return(
 			<div id="query-wrapper">
 
-				<label className="inset-label" htmlFor="flyFrom">
-					From:
-					<input 
-						id="flyFrom" 
-						type="text" 
-						ref={node => {fromInputNode = node}}
+				<fieldset>
+					<Place
+						labelText="From:"
+						inputId="flyFrom"
+						handleChange={this.handlePlaceChange}
+						placeType="placeFrom"
 					/>
-				</label>
+					<Place
+						labelText="To:"
+						inputId="flyTo"
+						handleChange={this.handlePlaceChange}
+						placeType="placeTo"
+					/>
+				</fieldset>
 
-				<label className="inset-label" htmlFor="flyTo">
-					To:
-					<input 
-						id="flyTo" 
-						type="text" 
-						ref={node => {toInputNode = node}}
-					/>
-				</label>
+				<fieldset>
+					<label className="inset-label" htmlFor="dateFrom">
+						First date to leave:
+						<DayPickerInput 
+							className="DayPicker"
+							onDayChange={this.handleDateFromChange}
+							placeholder="YYYY-MM-DD"
+							selectedDays={this.state.selectedDateFrom}
+							disabledDays={new Date(2019,4,19) }
+							inputProps={({id: 'dateFrom'})}
+						/>
+					</label>
 
-				<label className="inset-label" htmlFor="dateFrom">
-					First date to leave:
-					<DayPickerInput 
-						className="DayPicker"
-						onDayChange={this.handleDateFromChange}
-						placeholder="YYYY-MM-DD"
-						selectedDays={this.state.selectedDateFrom}
-	          disabledDays={new Date(2019,4,19) }
-						inputProps={({id: 'dateFrom'})}
-					/>
-				</label>
-
-				<label className="inset-label" htmlFor="dateTo">
-					Last date to leave:
-					<DayPickerInput 
-						className="DayPicker"
-						onDayChange={this.handleDateToChange}
-						placeholder="YYYY-MM-DD"
-						selectedDays={this.state.selectedDateTo}
-	          disabledDays={{ before: this.state.selectedDateFrom }}
-						inputProps={({id: 'dateTo'})}
-					/>
-				</label>
+					<label className="inset-label" htmlFor="dateTo">
+						Last date to leave:
+						<DayPickerInput 
+							className="DayPicker"
+							onDayChange={this.handleDateToChange}
+							placeholder="YYYY-MM-DD"
+							selectedDays={this.state.selectedDateTo}
+							disabledDays={{ before: this.state.selectedDateFrom }}
+							inputProps={({id: 'dateTo'})}
+						/>
+					</label>
+				</fieldset>
 
 
 				<div className="segment-wrapper">
@@ -148,7 +151,7 @@ class Query extends React.Component {
 					Duration
 				</label>
 				</div>
-				<button onClick={() => fetchConnections(fromInputNode.value, toInputNode.value, tFUT(this.state.selectedDateFrom), tFUT(this.state.selectedDateTo), this.state.sortType)}>Search</button>
+				<button onClick={() => fetchConnections(this.state.placeFrom, this.state.placeTo, tFUT(this.state.selectedDateFrom), tFUT(this.state.selectedDateTo), this.state.sortType)}>Search</button>
 			</div>
 		)
 	}

@@ -24,6 +24,10 @@ html {
 html, input, button {
   font-family: 'Disposable Droid BB', 'Press Start 2P', sans-serif; }
 
+fieldset {
+  border: 0;
+  padding: 0; }
+
 body {
   background-color: #FFF;
   color: #212623; }
@@ -36,6 +40,14 @@ body {
     max-width: 100%;
     height: auto; }
 
+@keyframes fadeIn {
+  from {
+    transform: translateY(20px) scale(0.9);
+    opacity: 0; }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1; } }
+
 #app-wrapper {
   position: absolute;
   top: 7.7425%;
@@ -45,6 +57,11 @@ body {
   overflow-x: hidden;
   padding: 20px;
   box-sizing: border-box;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 0.8s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
   background-color: #DEFFE8; }
   #app-wrapper h1 {
     font-size: 1.2em;
@@ -65,6 +82,7 @@ body {
   #query-wrapper legend {
     display: block; }
   #query-wrapper .inset-label {
+    position: relative;
     display: block;
     float: left;
     border: 3px solid #749A92;
@@ -80,6 +98,25 @@ body {
       border-radius: 3px;
       padding: 0 0 0 8px;
       font-size: inherit; }
+  #query-wrapper ul.suggested-places {
+    position: absolute;
+    z-index: 3;
+    top: 30px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    border: 3px solid #749A92;
+    border-radius: 3px;
+    background: #DEFFE8;
+    box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.15); }
+    #query-wrapper ul.suggested-places li {
+      position: relative;
+      z-index: 3;
+      padding: 6px 12px;
+      list-style: none;
+      cursor: pointer; }
+      #query-wrapper ul.suggested-places li:hover, #query-wrapper ul.suggested-places li:active {
+        background: #2D9D83; }
   #query-wrapper label {
     display: block;
     float: left;
@@ -111,6 +148,16 @@ body {
     cursor: pointer; }
     #query-wrapper button:hover, #query-wrapper button:active, #query-wrapper button:focus {
       background-color: #184F45; }
+
+.cancel-popup {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%; }
 
 #visible-connections-wrapper ul {
   padding: 0;
@@ -264,8 +311,8 @@ body {
 
 /* Default modifiers */
 .DayPicker-Day--today {
-  color: #D0021B;
-  font-weight: 700; }
+  color: #C23969;
+  font-weight: 600; }
 
 .DayPicker-Day--outside {
   color: #8B9898;
@@ -284,13 +331,13 @@ body {
 
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   position: relative;
-  background-color: #4A90E2;
+  background-color: #184F45;
   color: #F0F8FF; }
   .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
-    background-color: #51A0FA; }
+    background-color: #2D9D83; }
 
 .DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-  background-color: #F0F8FF; }
+  background-color: #2D9D83; }
 
 /* DayPickerInput */
 .DayPickerInput {
@@ -303,6 +350,8 @@ body {
   position: absolute;
   left: 0;
   z-index: 1;
-  background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); }
+  background: #DEFFE8;
+  border: 3px solid #749A92;
+  border-radius: 3px;
+  box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.15); }
 
